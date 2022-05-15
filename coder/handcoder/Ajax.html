@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写Ajax</title>
+</head>
+
+<body>
+    <script>
+        // 创建Ajax对象
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '/xxx', true)
+        xhr.onreadystatechange = function () {
+            // // 获取响应状态码
+            if (xhr.readyState === 4) {
+                // 判断请求
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log('请求成功')
+                } else {
+                    console.log('请求失败')
+                }
+            }
+        }
+        // 发送
+        xhr.send();
+    </script>
+</body>
+
+</html>

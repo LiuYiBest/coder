@@ -1,0 +1,17 @@
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    position: relative;
+  }
+  .child {
+    background: red;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }  

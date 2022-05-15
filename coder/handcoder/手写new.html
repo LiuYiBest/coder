@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!--     // 手写一个new-->
+
+<body>
+    <!-- new操作符的执行过程：
+    1. 首先创建一个新的空对象
+    2. 将构造函数的 prototype 属性赋值给新对象的 __proto__ 属性
+    3. 使用apply让函数的 this 指向这个对象,并执行构造函数，将执行结果作为result
+    4. 判断执行函数的结果是不是null或Undefined，如果是则返回之前的新对象，如果不是则返回result -->
+    <script>
+        function oneNew(fn, ...args) {
+            // 创建一个空对象
+            obj = {};
+            // 将构造函数的 prototype 属性赋值给新对象的 __proto__ 属性
+            obj.__proto__ = fn.prototype;
+            // 让函数的 this 指向这个对象，执行构造函数的代码
+            let result = fn.apply(obj, args);
+            // 判断返回的是一个对象
+            return result instanceof object ? result : obj
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+.box {
+    height: 200px;
+    border: 1px solid red;
+   display: flex;
+   justify-content:space-between;
+ }
+ .block {
+         width: 100px;
+         height: 100px;
+         background-color: red;   
+ }

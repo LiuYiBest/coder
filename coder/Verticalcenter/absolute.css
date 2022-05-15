@@ -1,0 +1,13 @@
+.box1{
+    height: 200px;
+    width: 200px;
+    border: 1px solid;
+    position: relative;
+}
+.child1{
+    background: red;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform:translate(-50%,-50%)
+}

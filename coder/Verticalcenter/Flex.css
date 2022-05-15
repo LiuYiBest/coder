@@ -1,0 +1,23 @@
+.box1 {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .child1 {
+    background: red;
+  }  
+
+  .box2{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    border: 1px solid red;
+  }
+  .child2 {
+    background: red;
+    margin: auto;
+  }

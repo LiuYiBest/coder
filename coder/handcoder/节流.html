@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 节流函数原理:规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效
+    概念：如果一个事件被频繁触发多次，节流函数可以按照固定频率去执行对应的事件处理方法。  -->
+    <script>
+        // 通俗理解：CD技能时间，函数节流就是fps游戏的射速（冷却 ），就算一直按着鼠标射击，也只会在规定射速内射出子弹
+        function fnl() { }
+        let cd = false;
+        button.onclick = function () {
+            if (cd) {  //在用户点击的时候释放
+                //如果在冷却中
+            } else {
+                fn();  //如果冷却成功释放法术
+                cd = true; //冷却中
+                var timerId = setTimeout(() => {
+                    cd = false //三秒后冷却完成
+                }, 3000)  //冷却三秒执行 
+                cd = true  //释放技能在冷却中
+            }
+        }
+    </script>
+</body>
+
+</html>

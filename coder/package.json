@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/node": "^17.0.31",
+    "http-server": "^14.0.0",
+    "tslib": "^2.4.0"
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        class Promise2 {
+            successQueue = []   //定义一个队列存储成功的函数
+            failQueue = []      //定义一个队列存储失败的函数
+            constructor(fn) {    //new Promise2(fn)
+                const resolve = (data) => {
+                    setTimeout(() => {    //要等一会  负责队列为空
+                        //遍历队列执行成功函数
+                        for (let i = 0; i < this.successQueue.length; i++) {
+                            this.successQueue[i](data)
+                        }
+                    })
+                }
+                const reject = (reason) => {
+                    setTimeout(() => {
+                        //遍历队列执行失败函数
+                        for (let i = 0; i < this.failQueue.length; i++) {
+                            this.failQueue[i](reason)
+                        }
+                    })
+                }
+                fn(resolve, reject)  //传递resolve和reject
+            }
+
+            //声明一个then函数，将操作结果push到队列中
+            then(success, fail) {
+                this.successQueue.push(success)  //成功就存储到successQueue队列
+                this.failQueue.push(fail)  //失败就存储到failQueue队列
+                return this   //返回当前Promise2对象
+            }
+        }
+        //需要接收两个参数，成功和失败
+        p1 = new Promise2((resolve, reject) => {
+            if (Math.random() * 10 > 5) {
+                resolve('大')
+            }
+            else { reject('小') }
+        })
+        //实现then的链式调用
+        p1.then((data) => { console.log(data) }, (reason) => { console.log(reason) })
+    </script>
+</body>
+
+</html>

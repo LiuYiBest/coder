@@ -1,0 +1,12 @@
+.box{
+    height: 200px;
+    width: 200px;
+    display: table-cell;
+    border:1px solid red;
+    vertical-align: middle; 
+    text-align: center;
+}
+.child{
+    background: red;
+    display: inline-block;
+}

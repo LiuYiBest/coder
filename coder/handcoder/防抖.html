@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            text-align:
+                center;
+            color: #fff;
+            background-color: #444;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 函数防抖：概念：如果一个事件被频繁触发多次，并且触发的时间间隔过短，
+        则防抖函数可以使得对应的事件处理函数只执行最后触发的一次。 -->
+    <div id="container"></div>
+    <script>
+        //     通俗理解：技能读条 ：个人理解 函数防抖就是法师发技能的时候要读条（吟唱），按下技能的读条没完，
+        // 再按技能键就会重新读条。 
+        // var count = 1;
+        // var container = document.getElementById('container');
+
+        // function getUserAction() {
+        //     container.innerHTML = count++;
+        // };
+
+        // function debounce(func, wait) {
+        //     var timeout;
+
+        //     return function () {
+        //         var context = this;
+        //         var args = arguments;
+
+        //         clearTimeout(timeout)
+        //         timeout = setTimeout(function () {
+        //             func.apply(context, args)
+        //         }, wait);
+        //     }
+        // }
+        // container.onmousemove = debounce(getUserAction, 500);
+
+        // 第二种理解：假设一个外卖员，收到一单外卖就等一段时间，如果这段时间内是否有下一单外卖，有就在等一段时间，没有就直接去送
+        var timerId = null
+        button.onclick = function () {
+            if (timerID) {
+                window.clearTimeout(timerID)//如果有新外卖，则清空要送第一单的想法
+            }
+            timerID = setTimeout(() => {
+                fn()
+                window.timerID = null
+            }, 5000);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -7,6 +7,7 @@ const test1=()=>{
     console.log('是否是对象',eventHub instanceof Object)
 }
 
+//发布订阅测试案例
 const test2=()=> {
 //emit发布 on订阅
     eventHub.on("xxx", y => {
@@ -17,6 +18,8 @@ const test2=()=> {
     eventHub.emit("xxx", '接收到了吗')
 }
 
+
+//是否正确取消订阅
 const test3=()=> {
     const eventHub2 = new EventHub()
     let called2 = false;

@@ -2,6 +2,7 @@ import EventHub from "../src";
 
 console.log(EventHub)
 
+//发布订阅模式
 const eventHub = new EventHub()
 const test1=()=>{
     console.log('是否是对象',eventHub instanceof Object)

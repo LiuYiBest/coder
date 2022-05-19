@@ -60,5 +60,11 @@ describe('deepClone赋值', () => {
             assert(a.xxx !==a2.xxx)
             assert(a(1,2) ===a2(1,2))
         })
+        it("环检测，环可以用复制",()=>{
+            const a = {name:'小'};
+            a.self = a
+            const a2 = deepClone(a)
+            assert(a === a2)
+        })
     })
 })

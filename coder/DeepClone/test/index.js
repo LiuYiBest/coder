@@ -51,14 +51,14 @@ describe('deepClone赋值', () => {
             assert.deepEqual(a,a2)
         })
         it("复制函数对象",()=>{
-            const a = function (){return 1}
+            const a = function (x,y){return x+y}
             a.xxx = {yyy:{zzz:1}}
             const a2 = deepClone(a)
             assert(a!==a2)
             assert(a.xxx.yyy.zzz ===a2.xxx.yyy.zzz)
             assert(a.xxx.yyy !==a2.xxx.yyy)
             assert(a.xxx !==a2.xxx)
-            assert(a() ===a2())
+            assert(a(1,2) ===a2(1,2))
         })
     })
 })

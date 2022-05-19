@@ -9,7 +9,15 @@ function deepClone(source) {
                 dist[sourceKey] = deepClone(source[sourceKey])
             }
             return dist;
-
+        } else if (source instanceof Function) {
+            const dist = function (){
+                return source.apply(this,arguments);
+            }
+            for (const sourceKey in source) {
+                //递归循环
+                dist[sourceKey] = deepClone(source[sourceKey])
+            }
+            return dist
         } else {
             const dist = new Object()
             for (const sourceKey in source) {
@@ -17,7 +25,6 @@ function deepClone(source) {
                 dist[sourceKey] = deepClone(source[sourceKey])
             }
             return dist;
-
         }
     }
 

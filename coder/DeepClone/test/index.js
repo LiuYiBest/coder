@@ -15,7 +15,7 @@ describe('deepClone赋值', () => {
     it('能够复制基本类型', () => {
         //基本类型没有引用
         const a = 123;
-        const a2 = deepClone(n)
+        const a2 = deepClone(a)
         assert(a === a2)
         const s = "123456"
         const s2 = deepClone(s)

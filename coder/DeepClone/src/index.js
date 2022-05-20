@@ -1,31 +1,31 @@
+let cache = [] //循环栈
+
 function deepClone(source) {
 
     if (source instanceof Object) {
+        //是否在缓存
+        if (cache.indexOf(source) >= 0) {
+            return source
+        } else {
+            cache.push(source)
+        }
+        let dist
         //判断是否是数组
         if (source instanceof Array) {
-            const dist = new Array();
-            for (const sourceKey in source) {
-                //递归虚幻
-                dist[sourceKey] = deepClone(source[sourceKey])
-            }
-            return dist;
+            dist = new Array();
+
         } else if (source instanceof Function) {
-            const dist = function (){
-                return source.apply(this,arguments);
+            dist = function () {
+                return source.apply(this, arguments);
             }
-            for (const sourceKey in source) {
-                //递归循环
-                dist[sourceKey] = deepClone(source[sourceKey])
-            }
-            return dist
         } else {
-            const dist = new Object()
-            for (const sourceKey in source) {
-                //递归循环
-                dist[sourceKey] = deepClone(source[sourceKey])
-            }
-            return dist;
+            dist = new Object()
         }
+        for (const sourceKey in source) {
+            //递归循环
+            dist[sourceKey] = deepClone(source[sourceKey])
+        }
+        return dist;
     }
     return source   //浅拷贝没有引用 直接返回
 }

@@ -78,5 +78,10 @@ describe('deepClone赋值', () => {
                 b = b.child
             }
         })
+        it("日期Data", () => {
+            const a = {child: null}
+            let b = a
+
+        })
     })
 })

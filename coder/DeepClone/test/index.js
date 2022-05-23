@@ -80,8 +80,9 @@ describe('deepClone赋值', () => {
         })
         it("日期Data", () => {
             const a = {child: null}
-            let b = a
-
+        })
+        it("正在表达式", () => {
+            const a = {child: null}
         })
     })
 })

@@ -2,6 +2,7 @@
 //     Function.prototype.bind = function (){};
 // }
 
+//手写bind
 function bind(asThis,args){
     //this就是函数
     const fn = this;

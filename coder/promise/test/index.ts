@@ -48,7 +48,7 @@ describe('Promise', () => {
         // @ts-ignore
         assert(called === true)
     })
-    it('promise.then(success)的success会在resolve被调用的时候执行', () => {
+    it('promise.then(success)的success会在resolve被调用的时候执行', (done) => {
         let called = false
         const promise = new Promise((resolve, reject) => {
             // @ts-ignore
@@ -56,6 +56,7 @@ describe('Promise', () => {
             resolve();
             // @ts-ignore
             assert(called === true)
+            done()
         })
         // @ts-ignore
         promise.then(() => {

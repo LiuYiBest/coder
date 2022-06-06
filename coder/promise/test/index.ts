@@ -36,7 +36,32 @@ describe('Promise', () => {
         // @ts-ignore
         assert(called === true)
     })
-
+    it('new Promise(fn)中的fn执行的时候接受resolve和reject函数', () => {
+        let called = false;
+        const promise = new Promise(() => {
+            called = true
+            let resolve;
+            assert.isFunction(resolve)
+            let rejcet;
+            assert.isFunction(rejcet)
+        })
+        // @ts-ignore
+        assert(called === true)
+    })
+    it('promise.then(success)的success会在resolve被调用的时候执行', () => {
+        let called = false
+        const promise = new Promise((resolve, reject) => {
+            // @ts-ignore
+            assert(called === false)
+            resolve();
+            // @ts-ignore
+            assert(called === true)
+        })
+        // @ts-ignore
+        promise.then(() => {
+            called = true
+        })
+    })
 
 })
 

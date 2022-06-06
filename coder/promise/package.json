@@ -1,10 +1,10 @@
 {
-  "name": "deep-clone",
+  "name": "promise",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "tests": "mocha --require ts-node/register test/**/*.ts"
+    "tests": "mocha --require ts-node/register test/index.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.1",

@@ -75,12 +75,13 @@ describe('Promise', () => {
     it('2.2.2函数必须在fulfilled之后执行', (done) => {
         const succeed = sinon.fake()
         const promise = new Promise((resolve)=>{
+            assert.isFalse(succeed.called)
             setTimeout(()=>{
-                assert.isTrue(succeed.called)
+                assert.isTrue(succeed.calledOnce)
                 // @ts-ignore
                 assert(promise.state === "pending");
+                done()
             })
-            done()
         });
         promise.then(succeed)
     })

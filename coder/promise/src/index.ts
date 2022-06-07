@@ -4,7 +4,10 @@ class Promise2 {
     state = "pending"
     resolve = (result) => {
         setTimeout(() => {
-            this.state = "2函数必须在fulfilled之后执行"
+            if(this.state !== 'pending'){
+                return;
+            }
+            this.state = "fulfilled"
             if(typeof this.succeed ==="function"){
                 this.succeed(result)
             }
@@ -12,6 +15,10 @@ class Promise2 {
     }
     reject = (reason) => {
         setTimeout(() => {
+            if(this.state !== 'pending'){
+                return;
+            }
+            this.state = "rejected"
             if(typeof this.fail ==="function"){
                 this.fail(reason)
             }

@@ -120,7 +120,7 @@ describe('Promise', () => {
         })
     })
 
-    it('2.2.5函数的then可以调用多次', (done) => {
+    it('2.2.6函数的then可以调用多次', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });

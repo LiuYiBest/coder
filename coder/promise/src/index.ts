@@ -26,7 +26,7 @@ class Promise2 {
             this.state = "rejected"
             this.callbacks.forEach((handle)=>{
                 if(typeof handle[1] ==="function"){
-                    handle[1].call(undefined,result)
+                    handle[1].call(undefined,reason)
                 }
             })
         })

@@ -110,6 +110,15 @@ describe('Promise', () => {
             done()
         })
     })
+    it('2.2.5函数的this是undefined', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        promise.then(function (){
+            // @ts-ignore
+            assert(this===undefined)
+        })
+    })
 
 })
 

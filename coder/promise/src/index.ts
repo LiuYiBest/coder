@@ -9,7 +9,7 @@ class Promise2 {
             }
             this.state = "fulfilled"
             if(typeof this.succeed ==="function"){
-                this.succeed(result)
+                this.succeed.call(undefined,result)
             }
         }, 0)
     }
@@ -20,7 +20,7 @@ class Promise2 {
             }
             this.state = "rejected"
             if(typeof this.fail ==="function"){
-                this.fail(reason)
+                this.fail.call(undefined,reason)
             }
         })
     }

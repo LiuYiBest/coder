@@ -131,6 +131,8 @@ describe('Promise', () => {
             // @ts-ignore
             assert(callbaks[0].called)
             // @ts-ignore
+            assert(callbaks[0].calledAfter(callbaks[1]))
+            // @ts-ignore
             assert(callbaks[1].called)
         })
     })

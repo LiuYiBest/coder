@@ -32,14 +32,12 @@ describe('Promise', () => {
         assert.isFunction(promise.then)
     })
     it('new Promise(fn)中的fn立即执行', () => {
-        let called = false;
-        const promise = new Promise(() => {
-            called = true
-        })
+        let fn = sinon.fake()
+        const promise = new Promise(fn)
         // @ts-ignore
-        assert(called === true)
+        assert(fn.called)
     })
-    it('new Promise(fn)中的fn执行的时候接受resolve和reject函数', () => {
+    it('new Promise(fn)中的fn执行的时候接受resolve和reject函数', (done) => {
         let called = false;
         const promise = new Promise(() => {
             called = true
@@ -47,6 +45,7 @@ describe('Promise', () => {
             assert.isFunction(resolve)
             let rejcet;
             assert.isFunction(rejcet)
+            done()
         })
         // @ts-ignore
         assert(called === true)

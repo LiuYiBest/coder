@@ -5,6 +5,7 @@ chai.use(sinonChai)
 
 const assert = chai.assert
 import Promise from "../src/index";
+import Promise2 from "../src/index";
 
 describe('Promise', () => {
     it("是一个类", () => {
@@ -64,6 +65,12 @@ describe('Promise', () => {
         promise.then(() => {
             called = true
         })
+    })
+    it('2.2.1then后面不是函数', (done) => {
+        const promise = new Promise((resolve)=>{
+            resolve()
+        });
+        // promise.then(false,null)
     })
 
 })

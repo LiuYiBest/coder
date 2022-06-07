@@ -120,5 +120,21 @@ describe('Promise', () => {
         })
     })
 
+    it('2.2.5函数的then可以调用多次', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        const callbaks= [sinon.fake(),sinon.fake()]
+        promise.then(callbaks[0])
+        promise.then(callbaks[1])
+        setTimeout(()=>{
+            // @ts-ignore
+            assert(callbaks[0].called)
+            // @ts-ignore
+            assert(callbaks[1].called)
+        })
+    })
+
+
 })
 

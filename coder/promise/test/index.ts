@@ -1,6 +1,7 @@
 import * as chai from "chai";
 import * as sinon from "sinon"
 import * as sinonChai from "sinon-chai";
+
 chai.use(sinonChai)
 
 const assert = chai.assert
@@ -67,16 +68,16 @@ describe('Promise', () => {
         })
     })
     it('2.2.1then后面不是函数', (done) => {
-        const promise = new Promise((resolve)=>{
+        const promise = new Promise((resolve) => {
             resolve()
         });
-        promise.then(false,null)
+        promise.then(false, null)
     })
     it('2.2.2函数必须在fulfilled之后执行', (done) => {
         const succeed = sinon.fake()
-        const promise = new Promise((resolve)=>{
+        const promise = new Promise((resolve) => {
             assert.isFalse(succeed.called)
-            setTimeout(()=>{
+            setTimeout(() => {
                 assert.isTrue(succeed.calledOnce)
                 // @ts-ignore
                 assert(promise.state === "pending");
@@ -84,6 +85,30 @@ describe('Promise', () => {
             })
         });
         promise.then(succeed)
+    })
+    it('2.2.3代码执行完之前不得调用then之前的函数', (done) => {
+        const succeed = sinon.fake()
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        promise.then(succeed)
+        assert.isFalse(succeed.called)
+        setTimeout(() => {
+            assert.isFalse(succeed.called)
+            done()
+        })
+    })
+    it('2.2.4失败回调', (done) => {
+        const reject = sinon.fake()
+        const promise = new Promise((reject) => {
+            reject()
+        });
+        promise.then(reject)
+        assert.isFalse(reject.called)
+        setTimeout(() => {
+            assert.isFalse(reject.called)
+            done()
+        })
     })
 
 })

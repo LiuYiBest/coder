@@ -2,17 +2,18 @@ class Promise2 {
     succeed = null
     fail = null
     state = "pending"
-    resolve = () => {
+    resolve = (result) => {
         setTimeout(() => {
+            this.state = "2函数必须在fulfilled之后执行"
             if(typeof this.succeed ==="function"){
-                this.succeed()
+                this.succeed(result)
             }
         }, 0)
     }
-    reject = () => {
+    reject = (reason) => {
         setTimeout(() => {
             if(typeof this.fail ==="function"){
-                this.fail()
+                this.fail(reason)
             }
         })
     }

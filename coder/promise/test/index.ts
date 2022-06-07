@@ -70,7 +70,19 @@ describe('Promise', () => {
         const promise = new Promise((resolve)=>{
             resolve()
         });
-        // promise.then(false,null)
+        promise.then(false,null)
+    })
+    it('2.2.2函数必须在fulfilled之后执行', (done) => {
+        const succeed = sinon.fake()
+        const promise = new Promise((resolve)=>{
+            setTimeout(()=>{
+                assert.isTrue(succeed.called)
+                // @ts-ignore
+                assert(promise.state === "pending");
+            })
+            done()
+        });
+        promise.then(succeed)
     })
 
 })

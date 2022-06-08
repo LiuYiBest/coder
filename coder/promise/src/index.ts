@@ -49,6 +49,7 @@ class Promise2 {
         if(typeof  succeed ==="function"){
             handle[1] = fail;
         }
+        this.callbacks.push(handle)
     }
 }
 

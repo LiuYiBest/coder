@@ -136,6 +136,9 @@ describe('Promise', () => {
             assert(callbaks[1].called)
         })
     })
+    it('2.2.7', (done) => {
+
+    })
 
 
 })

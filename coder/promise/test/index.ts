@@ -137,7 +137,9 @@ describe('Promise', () => {
         })
     })
     it('2.2.7', (done) => {
-
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
     })
 
 

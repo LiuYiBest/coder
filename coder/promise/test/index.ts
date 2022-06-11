@@ -140,6 +140,7 @@ describe('Promise', () => {
         const promise = new Promise((resolve) => {
             resolve()
         });
+        const callbaks= [sinon.fake(),sinon.fake()]
     })
 
 

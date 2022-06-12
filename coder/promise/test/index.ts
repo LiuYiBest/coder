@@ -142,6 +142,12 @@ describe('Promise', () => {
         });
         const callbaks= [sinon.fake(),sinon.fake()]
     })
+    it('2.2.8A+规范', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        const callbaks= [sinon.fake(),sinon.fake()]
+    })
 
 
 })

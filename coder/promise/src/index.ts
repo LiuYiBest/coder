@@ -6,13 +6,14 @@ class Promise2 {
     callbacks = []
     resolve = (result) => {
         setTimeout(() => {
-            if(this.state !== 'pending'){
+            if (this.state !== 'pending') {
                 return;
             }
             this.state = "fulfilled"
-            this.callbacks.forEach((handle)=>{
-                if(typeof handle[0] ==="function"){
-                    handle[0].call(undefined,result)
+            this.callbacks.forEach((handle) => {
+                if (typeof handle[0] === "function") {
+                    const x = handle[0].call(undefined, result)
+                    handle[2].resolveWith(x)
                 }
             })
 
@@ -20,13 +21,15 @@ class Promise2 {
     }
     reject = (reason) => {
         setTimeout(() => {
-            if(this.state !== 'pending'){
+            //遍历callbacks 调用所有的handle[1]
+            if (this.state !== 'pending') {
                 return;
             }
             this.state = "rejected"
-            this.callbacks.forEach((handle)=>{
-                if(typeof handle[1] ==="function"){
-                    handle[1].call(undefined,reason)
+            this.callbacks.forEach((handle) => {
+                if (typeof handle[1] === "function") {
+                    const x = handle[1].call(undefined, reason)
+                    handle.resolveWith(x)
                 }
             })
         })
@@ -43,16 +46,26 @@ class Promise2 {
     then(succeed?, fail?) {
         const handle = [];
 
-        if(typeof  succeed ==="function"){
+        if (typeof succeed === "function") {
             handle[0] = succeed;
         }
-        if(typeof  succeed ==="function"){
+        if (typeof succeed === "function") {
             handle[1] = fail;
         }
+        if (typeof succeed === 'function' || typeof fail === "function") {
+            handle[2] = new Promise2(() => {
+            })
+
+        }
         this.callbacks.push(handle)
-        return new Promise2(()=>{})  //如果一个函数不做，则无法接收
     }
-    resolveWith(x){}
+
+    resolveWith(x) {
+        // this是调用的promise2
+        if(this ===x){
+            this.reject(new TypeError('promise resolve'))
+        }
+    }
 }
 
 export default Promise2

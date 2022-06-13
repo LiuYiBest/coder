@@ -148,7 +148,7 @@ describe('Promise', () => {
         assert(promise2 instanceof Promise)
     })
 
-    it('2.2.7如果then(success,fail)的succee返回一个值x，运行[[Resolve]]（promise2,x）', (done) => {
+    it('2.2.7。1如果then(success,fail)的succee返回一个值x，运行[[Resolve]]（promise2,x）', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });
@@ -165,7 +165,23 @@ describe('Promise', () => {
         })
     })
 
-    it('2.2.7如果promise失败了', (done) => {
+    it('2.2.7.2如果promise失败了', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        const promise2 = promise.then(() => {
+        }, () => {
+        })
+        let fn = sinon.fake()
+        promise.then(()=>{},()=>"失败")
+        // @ts-ignore
+        assert(promise2 instanceof Promise)
+        setTimeout(()=>{
+            console.assert(fn.called)
+            done()
+        })
+    })
+    it('2.2.7.3如果promise失败了', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });

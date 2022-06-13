@@ -164,5 +164,22 @@ describe('Promise', () => {
             done()
         })
     })
+
+    it('2.2.7如果promise失败了', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        const promise2 = promise.then(() => {
+        }, () => {
+        })
+        let fn = sinon.fake()
+        promise.then(()=>{},()=>"失败")
+        // @ts-ignore
+        assert(promise2 instanceof Promise)
+        setTimeout(()=>{
+            console.assert(fn.called)
+            done()
+        })
+    })
 })
 

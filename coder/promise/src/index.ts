@@ -50,7 +50,9 @@ class Promise2 {
             handle[1] = fail;
         }
         this.callbacks.push(handle)
+        return new Promise2(()=>{})  //如果一个函数不做，则无法接收
     }
+    resolveWith(x){}
 }
 
 export default Promise2

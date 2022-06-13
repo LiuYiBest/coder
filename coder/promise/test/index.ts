@@ -114,9 +114,9 @@ describe('Promise', () => {
         const promise = new Promise((resolve) => {
             resolve()
         });
-        promise.then(function (){
+        promise.then(function () {
             // @ts-ignore
-            assert(this===undefined)
+            assert(this === undefined)
         })
     })
 
@@ -124,10 +124,10 @@ describe('Promise', () => {
         const promise = new Promise((resolve) => {
             resolve()
         });
-        const callbaks= [sinon.fake(),sinon.fake()]
+        const callbaks = [sinon.fake(), sinon.fake()]
         promise.then(callbaks[0])
         promise.then(callbaks[1])
-        setTimeout(()=>{
+        setTimeout(() => {
             // @ts-ignore
             assert(callbaks[0].called)
             // @ts-ignore
@@ -136,17 +136,22 @@ describe('Promise', () => {
             assert(callbaks[1].called)
         })
     })
-    it('2.2.7', (done) => {
+    it('2.2.7then必须返回一个promise', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });
-        const callbaks= [sinon.fake(),sinon.fake()]
+        const promise2 = promise.then(() => {
+        }, () => {
+        });
+        // @ts-ignore
+        assert(promise2 instanceof Promise)
     })
-    it('2.2.8A+规范', (done) => {
+
+    it('2.2.7如果then(success,fail)的succee返回一个值x，运行[[Resolve]]', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });
-        const callbaks= [sinon.fake(),sinon.fake()]
+        const callbaks = [sinon.fake(), sinon.fake()]
     })
 
 

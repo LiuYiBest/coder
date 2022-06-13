@@ -153,8 +153,14 @@ describe('Promise', () => {
         });
         const promise2 = promise.then(() => {
         }, () => {
-        });
+        })
+        promise.then(()=>"成功",()=>{})
+        // @ts-ignore
+        assert(promise2 instanceof Promise)
+        setTimeout(()=>{
+            console.assert(fn.called)
+            done()
+        })
     })
-
 })
 

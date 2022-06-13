@@ -1,3 +1,5 @@
+import "@types/node";
+
 class Promise2 {
 
     // succeed = null
@@ -5,7 +7,7 @@ class Promise2 {
     state = "pending"
     callbacks = []
     resolve = (result) => {
-        setTimeout(() => {
+        setImmediate(() => {
             if (this.state !== 'pending') {
                 return;
             }
@@ -16,11 +18,10 @@ class Promise2 {
                     handle[2].resolveWith(x)
                 }
             })
-
-        }, 0)
+        },)
     }
     reject = (reason) => {
-        setTimeout(() => {
+        setImmediate(() => {
             //遍历callbacks 调用所有的handle[1]
             if (this.state !== 'pending') {
                 return;
@@ -92,7 +93,7 @@ class Promise2 {
                 } catch (e) {
                     this.reject(e)
                 }
-            }else {
+            } else {
                 this.resolve(x)
             }
         }

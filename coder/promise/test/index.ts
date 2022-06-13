@@ -147,13 +147,14 @@ describe('Promise', () => {
         assert(promise2 instanceof Promise)
     })
 
-    it('2.2.7如果then(success,fail)的succee返回一个值x，运行[[Resolve]]', (done) => {
+    it('2.2.7如果then(success,fail)的succee返回一个值x，运行[[Resolve]]（promise2,x）', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });
-        const callbaks = [sinon.fake(), sinon.fake()]
+        const promise2 = promise.then(() => {
+        }, () => {
+        });
     })
-
 
 })
 

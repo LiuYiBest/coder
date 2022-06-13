@@ -68,21 +68,32 @@ class Promise2 {
         if (x instanceof Promise2) {
             x.then(result => {
                     this.resolve(result)
-                },reason=>{
-                this.reject(reason)
+                }, reason => {
+                    this.reject(reason)
                 }
             )
         }
-        if(x instanceof Object){
+        // 如果x.then存在则调用
+        if (x instanceof Object) {
             let then
-            try{
+            try {
                 let then = x.then()
-            }catch (e){
+            } catch (e) {
                 this.reject(e)
             }
-            if(then instanceof Function){
+            if (then instanceof Function) {
                 then.call(x)
-                x.then()
+                try {
+                    x.then((y) => {
+                        this.resolveWith(y)
+                    }, (r) => {
+                        this.reject(r)
+                    })
+                } catch (e) {
+                    this.reject(e)
+                }
+            }else {
+                this.resolve(x)
             }
         }
     }

@@ -154,6 +154,7 @@ describe('Promise', () => {
         const promise2 = promise.then(() => {
         }, () => {
         })
+        let fn = sinon.fake()
         promise.then(()=>"成功",()=>{})
         // @ts-ignore
         assert(promise2 instanceof Promise)

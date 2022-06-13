@@ -62,8 +62,19 @@ class Promise2 {
 
     resolveWith(x) {
         // this是调用的promise2
-        if(this ===x){
+        if (this === x) {
             this.reject(new TypeError('promise resolve'))
+        }
+        if (x instanceof Promise2) {
+            x.then(result => {
+                    this.resolve(result)
+                },reason=>{
+                this.reject(reason)
+                }
+            )
+        }
+        if(x instanceof Object){
+            let then = x.then()
         }
     }
 }

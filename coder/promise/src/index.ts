@@ -74,7 +74,16 @@ class Promise2 {
             )
         }
         if(x instanceof Object){
-            let then = x.then()
+            let then
+            try{
+                let then = x.then()
+            }catch (e){
+                this.reject(e)
+            }
+            if(then instanceof Function){
+                then.call(x)
+                x.then()
+            }
         }
     }
 }

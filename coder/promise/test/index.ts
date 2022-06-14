@@ -197,5 +197,21 @@ describe('Promise', () => {
             done()
         })
     })
+    it('2.2.7.5如果succee或者fail抛出异常', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        const promise2 = promise.then(() => {
+
+
+        })
+        let fn = sinon.fake()
+        // @ts-ignore
+        assert(promise2 instanceof Promise)
+        setTimeout(()=>{
+            console.assert(fn.called)
+            done()
+        })
+    })
 })
 

@@ -197,7 +197,7 @@ describe('Promise', () => {
             done()
         })
     })
-    it('2.2.7.5如果succee或者fail抛出异常', (done) => {
+    it('2.2.7.4如果succeed或者fail抛出异常', (done) => {
         const promise = new Promise((resolve) => {
             resolve()
         });

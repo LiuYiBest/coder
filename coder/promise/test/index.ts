@@ -213,5 +213,16 @@ describe('Promise', () => {
             done()
         })
     })
+    it('2.2.8完成promise', (done) => {
+        const promise = new Promise((resolve) => {
+            resolve()
+        });
+        const promise2 = promise.then(() => {
+
+
+        })
+        let fn = sinon.fake()
+
+    })
 })
 

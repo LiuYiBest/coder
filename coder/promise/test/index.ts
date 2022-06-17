@@ -213,16 +213,36 @@ describe('Promise', () => {
             done()
         })
     })
-    it('2.2.8完成promise', (done) => {
-        const promise = new Promise((resolve) => {
-            resolve()
+
+
+    it("2.2.7.2 如果fail抛出一个异常e,promise2 必须被拒绝", done => {
+        const promise1 = new Promise((resolve, reject) => {
+            reject();
         });
-        const promise2 = promise.then(() => {
-
-
-        })
-        let fn = sinon.fake()
-
-    })
+        const fn = sinon.fake();
+        const error = new Error();
+        const promise2 = promise1.then(null, () => {
+            throw error;
+        });
+        // promise2.then(null, fn);
+        setTimeout(() => {
+            // @ts-ignore
+            assert(fn.called);
+            // @ts-ignore
+            assert(fn.calledWith(error));
+            done();
+        });
+    });
+    // it('2.2.8完成promise', (done) => {
+    //     const promise = new Promise((resolve) => {
+    //         resolve()
+    //     });
+    //     const promise2 = promise.then(() => {
+    //
+    //
+    //     })
+    //     let fn = sinon.fake()
+    //
+    // })
 })
 
